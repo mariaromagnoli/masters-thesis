@@ -30,20 +30,17 @@ the LaTeX source of the thesis, and the reference literature. The data is not in
 
 | scripts | what they do |
 |---|---|
-| `00 config.R` | the one path to set, shared helpers, and every output destination. Sourced by every other script. |
-| `01`–`03` | builders: raw survey exports → the derived worker, dyad and general-network datasets |
+| `00 config.R` | path to set, shared helpers, and every output destination. Sourced by every other script. |
+| `01`–`03` | builders: raw survey exports to derived datasets |
 | `10`–`17` | descriptives: the Empirical Setting tables, figures and prose macros |
 | `20`–`24` | analysis: balance, the five channels, the layer-design and multiplexity specifications, and the validity audit |
 | `99 run all.R` | runs the lot |
 
 Numbers quoted in the thesis prose are never typed by hand. A script
 computes each one and writes a `\pnFoo` macro into `04 latex/pn/`, which
-the prose cites; regenerating the pipeline regenerates the macros, so the
-text cannot silently drift from the estimates.
+the prose cites. 
 
-### Running it
-
-Set `dir_root` in `02 code/00 config.R`, then, from inside `02 code/`:
+To run, set `dir_root` in `02 code/00 config.R`, then, from inside `02 code/` run 
 
 ```bash
 Rscript "99 run all.R"
@@ -52,14 +49,10 @@ Rscript "99 run all.R"
 Individual scripts can be run on their own and will locate `00 config.R`
 whether they are started from the repository root or from `02 code/`.
 
-**R packages used:** `dplyr`, `tidyr`, `stringr`, `readr`, `arrow`,
-`fixest`, `ggplot2`, `readxl`, `sf`, `patchwork`, `scales`.
-
 ---
 
-## The thesis document
+## LaTeX
 
-`04 latex/00 thesis/thesis.tex` is the skeleton; each section is its own
-numbered file, numbered in document order. It reads the generated `pn/`,
+`04 latex/00 thesis/thesis.tex` is the skeleton. It reads the generated `pn/`,
 `tables/` and `figures/` with `../`. `thesis.pdf` is the compiled output.
 
