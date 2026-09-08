@@ -1,0 +1,10 @@
+"test","dyads","observed","null","null_sd","excess_pct","p"
+"woreda, unrestricted",16252,0.0569,0.0436,0.0027,30.5,5e-04
+"woreda, within firm",16252,0.0569,0.0438,0.0027,29.9,5e-04
+"woreda, within firm, batches >=12 typed",15800,0.0567,0.0455,0.0026,24.6,0.001
+"zone, unrestricted",16252,0.2034,0.1918,0.007,6.1,0.0585
+"zone, within firm",16252,0.2034,0.1866,0.0064,9,0.0085
+"zone, within firm, batches >=12 typed",15800,0.2024,0.1865,0.0059,8.6,0.008
+"woreda, Firm B only",8212,0.0682,0.0478,0.0038,42.7,5e-04
+"woreda, Firm A only",6826,0.0428,0.0373,0.0037,14.7,0.0865
+"woreda, Firm C only",976,0.0594,0.0591,0.0105,0.6,0.4973

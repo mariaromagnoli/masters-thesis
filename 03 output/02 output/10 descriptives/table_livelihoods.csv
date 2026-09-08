@@ -1,0 +1,10 @@
+"variable","unit","n","mean","p10","p25","median","p75","p90"
+"Monthly wage at HIP","Birr",670,3100.5,2500,2500,2500,3200,4000
+"Own earnings, all activities","Birr/month",511,2972.8,1392.9,2498.6,2785.7,3428.6,4285.7
+"Household income, past 3 months","Birr",672,19550.2,6810,11745,16801.5,24000,32140
+"Rent","Birr/month",672,762.4,0,500,750,1000,1250
+"Rent as a share of own earnings","ratio",475,0.3,0,0.2,0.2,0.3,0.5
+"Expected wage in one year","Birr",654,4341,2500,3000,4000,5000,6000
+"Reservation wage, outside offer","Birr",606,6921.6,4000,5000,6000,8000,10000
+"Reservation wage / current wage","ratio",606,2.4,1.3,1.6,2,2.8,4
+"Days spent finding this job","days",672,25.6,7,10,20,30,60

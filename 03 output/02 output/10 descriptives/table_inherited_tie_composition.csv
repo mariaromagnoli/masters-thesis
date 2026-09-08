@@ -1,0 +1,9 @@
+"rel","n","n_origin","n_cov","roster","share","share_cov"
+"Kin",37,36,20,"Co-hire ties",0.122112211221122,0.555555555555556
+"Friends",231,214,44,"Co-hire ties",0.762376237623762,0.205607476635514
+"Acquaintances",35,33,3,"Co-hire ties",0.115511551155116,0.0909090909090909
+"Other or unknown",0,0,0,"Co-hire ties",0,NA
+"Kin",1450,1450,1260,"General network",0.521958243340533,0.868965517241379
+"Friends",1206,1203,581,"General network",0.434125269978402,0.482959268495428
+"Acquaintances",122,121,31,"General network",0.0439164866810655,0.256198347107438
+"Other or unknown",0,0,0,"General network",0,NA
