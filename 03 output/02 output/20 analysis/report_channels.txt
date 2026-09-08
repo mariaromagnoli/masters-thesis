@@ -1,0 +1,386 @@
+analysis workers: 672 | minority by region: 98 | minority by language: 98 | in BOTH: 87 
+n_roster median 35 agrees with \pnRecallRosterMedian: OK 
+origin-valid dyads: 19522 | egos: 630 | batches: 64 
+recalled: 1187 | tied_any: 652 | tied_pre: 283 | tied_post: 369 
+same_woreda: 1058 | of which tied_post: 23 | tied_pre: 67 
+y1 sample (pre-HIP-tied pairs dropped): 19239 of 19522 
+
+========================================
+ 1. RECALL -- equation (7) 
+======================================== 
+outcome: recalled. mean = 0.0608 
+                                rc1                rc2
+Dependent Var.:            recalled           recalled
+                                                      
+Constant         0.0396*** (0.0070)                   
+same_woreda      0.0647*** (0.0107) 0.0615*** (0.0100)
+same_pu_mi       0.0358*** (0.0074) 0.0502*** (0.0070)
+pu_known          -0.0142* (0.0062)   -0.0075 (0.0065)
+shared_lang      0.0272*** (0.0047) 0.0277*** (0.0047)
+resurveyed_iTRUE  -0.0144* (0.0065)                   
+Fixed-Effects:   ------------------ ------------------
+batch                            No                Yes
+________________ __________________ __________________
+S.E.: Clustered   by: work. & alte.  by: work. & alte.
+Observations                 19,522             19,522
+R2                          0.00928            0.04990
+Within R2                        --            0.01081
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+th1 (shared origin) -- no FE: 0.06469 | batch FE: 0.06154 
+
+recall | tied_pre == 1: 1 (1 BY CONSTRUCTION) | tied_pre == 0: 0.047 
+pre-tied share among same-woreda pairs: 0.0633 | among the rest: 0.0117 
+th1 all pairs: 0.06154 | strangers only: 0.01984 
+                               rc2                rc3
+                         all pairs     strangers only
+Dependent Var.:           recalled           recalled
+                                                     
+same_woreda     0.0615*** (0.0100)  0.0198** (0.0072)
+same_pu_mi      0.0502*** (0.0070) 0.0406*** (0.0063)
+pu_known          -0.0075 (0.0065)   -0.0079 (0.0061)
+shared_lang     0.0277*** (0.0047) 0.0179*** (0.0042)
+Fixed-Effects:  ------------------ ------------------
+batch                          Yes                Yes
+_______________ __________________ __________________
+S.E.: Clustered  by: work. & alte.  by: work. & alte.
+Observations                19,522             19,239
+R2                         0.04990            0.04832
+Within R2                  0.01081            0.00598
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+========================================
+ 2. IMPORTATION -- equation (8) 
+======================================== 
+outcome: tied_pre. mean = 0.0145 | ties = 283 
+                               im1                im2                im3
+Dependent Var.:           tied_pre           tied_pre           tied_pre
+                                                                        
+Constant        0.0117*** (0.0009) 0.0097*** (0.0009)                   
+same_woreda     0.0516*** (0.0086) 0.0411*** (0.0089) 0.0372*** (0.0082)
+same_zone                          0.0125*** (0.0030) 0.0132*** (0.0030)
+Fixed-Effects:  ------------------ ------------------ ------------------
+batch                           No                 No                Yes
+_______________ __________________ __________________ __________________
+S.E.: Clustered  by: work. & alte.  by: work. & alte.  by: work. & alte.
+Observations                19,522             19,522             19,522
+R2                         0.00956            0.01095            0.02541
+Within R2                       --                 --            0.00990
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+base rate of an inherited tie: 0.0145 | same-woreda premium: 0.0372 | as a multiple of base: 2.56 
+
+========================================
+ 3. OPPORTUNITY -- equation (9) 
+======================================== 
+outcome: tied_post on the y1 sample. mean = 0.0192 | ties = 369 
+                                op1                op2
+Dependent Var.:           tied_post          tied_post
+                                                      
+Constant          0.0089** (0.0034)                   
+same_pu_mi       0.0148*** (0.0038) 0.0247*** (0.0042)
+pu_known           -0.0027 (0.0030)   -0.0007 (0.0036)
+shared_lang      0.0118*** (0.0021) 0.0112*** (0.0020)
+resurveyed_iTRUE   -0.0049 (0.0032)                   
+Fixed-Effects:   ------------------ ------------------
+batch                            No                Yes
+________________ __________________ __________________
+S.E.: Clustered   by: work. & alte.  by: work. & alte.
+Observations                 19,239             19,239
+R2                          0.00279            0.02756
+Within R2                        --            0.00472
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+same spec on the FULL sample (pre-HIP-tied pairs kept as zeros): u = 0.0239 vs 0.02466 
+tie rate with a shared language: 0.02072 | implied kappa (ratio without a shared language to with): 0.457 
+
+========================================
+ 4. TASTE WITHIN THE FIRM -- equation (10) 
+======================================== 
+same-woreda pairs on the y1 sample: 991 | of which tied inside the Park: 23 
+                               ta1                ta2
+Dependent Var.:          tied_post          tied_post
+                                                     
+same_woreda        0.0045 (0.0047)    0.0079 (0.0051)
+same_pu_mi      0.0247*** (0.0042) 0.0345*** (0.0057)
+pu_known          -0.0007 (0.0036)    0.0009 (0.0083)
+shared_lang     0.0110*** (0.0020) 0.0196*** (0.0038)
+Fixed-Effects:  ------------------ ------------------
+batch                          Yes                 No
+worker_id                       No                Yes
+alter_id                        No                Yes
+_______________ __________________ __________________
+S.E.: Clustered  by: work. & alte.  by: work. & alte.
+Observations                19,239             19,239
+R2                         0.02762            0.12140
+Within R2                  0.00477            0.00640
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+logit counterparts of the extensive-margin equations: 
+                    spec        term    lpm  logit        p_lpm        p_lgt
+same_woreda       recall same_woreda  6.154  4.514 1.340100e-09 4.447857e-16
+same_pu_mi        recall  same_pu_mi  5.023  5.051 2.578164e-12 4.440399e-16
+pu_known          recall    pu_known -0.751 -0.827 2.455400e-01 1.924955e-01
+shared_lang       recall shared_lang  2.766  3.735 9.021393e-09 3.575057e-07
+same_woreda1 importation same_woreda  3.717  1.338 7.890570e-06 6.148110e-07
+same_zone    importation   same_zone  1.318  1.280 1.099057e-05 5.372012e-08
+same_pu_mi1  opportunity  same_pu_mi  2.466  2.534 4.742440e-09 1.063129e-14
+pu_known1    opportunity    pu_known -0.067 -0.213 8.518973e-01 5.101394e-01
+shared_lang1 opportunity shared_lang  1.125  1.706 2.775655e-08 1.247866e-05
+same_woreda2       taste same_woreda  0.453  0.458 3.314196e-01 2.470996e-01
+same_pu_mi2        taste  same_pu_mi  2.467  2.536 4.785144e-09 1.103369e-14
+pu_known2          taste    pu_known -0.075 -0.216 8.373633e-01 5.049225e-01
+shared_lang2       taste shared_lang  1.102  1.685 4.996301e-08 1.595858e-05
+             n_lpm n_lgt
+same_woreda  19522 19383
+same_pu_mi   19522 19383
+pu_known     19522 19383
+shared_lang  19522 19383
+same_woreda1 19522 18897
+same_zone    19522 18897
+same_pu_mi1  19239 18875
+pu_known1    19239 18875
+shared_lang1 19239 18875
+same_woreda2 19239 18875
+same_pu_mi2  19239 18875
+pu_known2    19239 18875
+shared_lang2 19239 18875
+sign flips: 0 | 5% verdict flips: 0 | largest gap in points: 2.38 
+
+same-ZONE pairs on the y1 sample: 3848 | of which tied inside the Park: 99 | against 991 same-woreda pairs and 23 ties 
+                               ta2               ta2z
+                            woreda               zone
+Dependent Var.:          tied_post          tied_post
+                                                     
+same_woreda        0.0079 (0.0051)                   
+same_pu_mi      0.0345*** (0.0057) 0.0345*** (0.0057)
+pu_known           0.0009 (0.0083)    0.0014 (0.0083)
+shared_lang     0.0196*** (0.0038) 0.0184*** (0.0038)
+same_zone                          0.0098*** (0.0029)
+Fixed-Effects:  ------------------ ------------------
+worker_id                      Yes                Yes
+alter_id                       Yes                Yes
+_______________ __________________ __________________
+S.E.: Clustered  by: work. & alte.  by: work. & alte.
+Observations                19,239             19,239
+R2                         0.12140            0.12192
+Within R2                  0.00640            0.00699
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+zone MDE at 80% power = 0.00816 | woreda MDE = 0.0143 | is the zone design better powered? TRUE 
+
+tau = 0.00789 | se = 0.00511 | MDE at 80% power = 0.0143 | base rate = 0.01918 
+MDE as a multiple of the base tie rate: 0.75 
+importation premium (eq 8, batch FE), for scale: 0.03717 | is the taste MDE larger than it? FALSE 
+
+========================================
+ 5. TASTE IN THE GENERAL NETWORK -- equation (11) 
+======================================== 
+general-network alters: 3030 | formed after arrival: 255 | co-villagers: 1952 
+co-villager share among alters brought with her: 0.6746 | among those acquired after arrival: 0.3137 
+respondents with BOTH kinds of alter (the FE-identified sample): 158 workers, 815 alters 
+                                gt1                 gt2
+Dependent Var.:                   v                   v
+                                                       
+Constant         0.6746*** (0.0112)                    
+post            -0.3609*** (0.0367) -0.3471*** (0.0364)
+Fixed-Effects:  ------------------- -------------------
+worker_id                        No                 Yes
+_______________ ___________________ ___________________
+S.E.: Clustered       by: worker_id       by: worker_id
+Observations                  3,030               3,030
+R2                          0.04379             0.36039
+Within R2                        --             0.03970
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+kebele composition built for 643 workers | median pool size 135 | mean own-woreda share 0.0638 
+general-network alters with a kebele measure: 2920 
+
+level control, no FE: kebele coefficient = 0.2631 
+level control, WITH respondent FE: is it estimable? FALSE -- collinear with alpha_i, as the header note says 
+                                         gt2              gk_int
+Dependent Var.:                            v                   v
+                                                                
+post                     -0.3471*** (0.0364) -0.3695*** (0.0462)
+post x kebele_own_woreda                         0.3155 (0.4069)
+Fixed-Effects:           ------------------- -------------------
+worker_id                                Yes                 Yes
+________________________ ___________________ ___________________
+S.E.: Clustered                by: worker_id       by: worker_id
+Observations                           3,030               2,920
+R2                                   0.36039             0.35947
+Within R2                            0.03970             0.04001
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+floor: share of firm-assembled co-hire pairs sharing a woreda = 0.0542 
+co-villager share among alters acquired after arrival = 0.3137 | ratio to the floor: 5.79 
+co-villager share among alters brought with her = 0.6746 | ratio to the floor: 12.45 
+
+========================================
+ 6. EXCLUSION -- equation (12) 
+======================================== 
+
+namer-split exclusion: delta applies only when the namer is not a minority 
+                               ex_a5              ex_a6
+Dependent Var.:            tied_post          tied_post
+                                                       
+same_woreda          0.0014 (0.0045)    0.0013 (0.0045)
+same_pu_mi        0.0238*** (0.0041) 0.0233*** (0.0040)
+pu_known            -0.0002 (0.0036)   -0.0002 (0.0036)
+shared_lang         0.0057* (0.0027)   0.0047. (0.0028)
+m_j                 -0.0051 (0.0036)                   
+m_i                -0.0080* (0.0034)                   
+m_j x m_i          0.0313** (0.0096)                   
+mlang_j                                -0.0053 (0.0038)
+mlang_i                               -0.0087* (0.0035)
+mlang_j x mlang_i                    0.0473*** (0.0134)
+Fixed-Effects:    ------------------ ------------------
+batch                            Yes                Yes
+_________________ __________________ __________________
+S.E.: Clustered    by: work. & alte.  by: work. & alte.
+Observations                  19,522             19,522
+R2                           0.02643            0.02748
+Within R2                    0.00530            0.00637
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+delta_out (non-minority namers) = 0.00509 | se 0.0036 | p 0.1572 | MDE 0.01007 
+delta_in (minority namers) = -0.02625 | interaction p 0.0011 
+pairs with a non-minority namer and a minority receiver: 2080 | minority namer, minority receiver: 494 
+
+unordered pairs with both directions observed: 9368 | asymmetric on any tie: 387 | asymmetric on a post-HIP tie: 272 
+pairs where the two members differ in minority status: 1976 
+                            ex_b1            ex_b2            ex_b3
+Dependent Var.:                dy              dy1               dy
+                                                                   
+Constant        -9.49e-5 (0.0021) -0.0016 (0.0018) -0.0001 (0.0021)
+dm               -0.0005 (0.0029)  0.0032 (0.0027)                 
+dml                                                 5.7e-6 (0.0031)
+_______________ _________________ ________________ ________________
+S.E. type       Heteroskeda.-rob. Heterosked.-rob. Heterosked.-rob.
+Observations                9,368            9,368            9,368
+R2                        1.25e-6          7.49e-5         1.68e-10
+Adj. R2                  -0.00011         -3.19e-5         -0.00011
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+delta (any tie, region definition) = 5e-04 | se 0.00289 | MDE 0.0081 
+positive delta = minority workers are named less by non-minority namers. 
+
+========================================
+ SUMMARY -- every reported coefficient 
+======================================== 
+                       channel                                     spec
+1                   recall (7)                         recall, batch FE
+2                   recall (7)                         recall, batch FE
+3                   recall (7)                         recall, batch FE
+4                   recall (7)              recall, batch FE, strangers
+5                   recall (7)              recall, batch FE, strangers
+6                   recall (7)              recall, batch FE, strangers
+7                   recall (7)                            recall, no FE
+8                   recall (7)                            recall, no FE
+9                   recall (7)                            recall, no FE
+10             importation (8)                    importation, batch FE
+11             importation (8)                    importation, batch FE
+12             importation (8)                       importation, no FE
+13             importation (8)                       importation, no FE
+14             opportunity (9)                    opportunity, batch FE
+15             opportunity (9)                    opportunity, batch FE
+16             opportunity (9)       opportunity, batch FE, full sample
+17         taste, co-hire (10)              taste co-hire, ego+alter FE
+18         taste, co-hire (10)              taste co-hire, ego+alter FE
+19         taste, co-hire (10)              taste co-hire, ego+alter FE
+20         taste, co-hire (10)                  taste co-hire, batch FE
+21         taste, co-hire (10)        taste co-hire, ego+alter FE, zone
+22         taste, co-hire (10)        taste co-hire, ego+alter FE, zone
+23         taste, co-hire (10)        taste co-hire, ego+alter FE, zone
+24 taste, general network (11)                          taste GN, no FE
+25 taste, general network (11)                  taste GN, respondent FE
+26 taste, general network (11)           taste GN, no FE + kebele level
+27 taste, general network (11)        taste GN, FE + kebele interaction
+28 taste, general network (11)        taste GN, FE + kebele interaction
+29              exclusion (12)               exclusion (a), namer split
+30              exclusion (12)               exclusion (a), namer split
+31              exclusion (12)               exclusion (a), namer split
+32              exclusion (12)               exclusion (a), namer split
+33              exclusion (12)      exclusion (b), differenced, any tie
+34              exclusion (12) exclusion (b), differenced, post-HIP tie
+35              exclusion (12)      exclusion (b), differenced, any tie
+                                        term         b       se        p     n
+1                          shared origin (h)  0.061541 0.009994 0.000000 19522
+2                            shared unit (u)  0.050232 0.007030 0.000000 19522
+3                        shared language (s)  0.027658 0.004745 0.000000 19522
+4                          shared origin (h)  0.019844 0.007248 0.006364 19239
+5                            shared unit (u)  0.040642 0.006276 0.000000 19239
+6                        shared language (s)  0.017934 0.004179 0.000021 19239
+7                          shared origin (h)  0.064688 0.010683 0.000000 19522
+8                            shared unit (u)  0.035812 0.007400 0.000002 19522
+9                        shared language (s)  0.027183 0.004708 0.000000 19522
+10                         shared origin (h)  0.037173 0.008248 0.000008 19522
+11                           shared zone (z)  0.013180 0.002973 0.000011 19522
+12                         shared origin (h)  0.041082 0.008893 0.000005 19522
+13    shared origin (h), zone not controlled  0.051629 0.008611 0.000000 19522
+14                           shared unit (u)  0.024659 0.004150 0.000000 19239
+15                       shared language (s)  0.011249 0.001999 0.000000 19239
+16                           shared unit (u)  0.023898 0.004059 0.000000 19522
+17                   shared origin (h) = tau  0.007891 0.005107 0.122804 19239
+18                           shared unit (u)  0.034465 0.005654 0.000000 19239
+19                       shared language (s)  0.019579 0.003805 0.000000 19239
+20                   shared origin (h) = tau  0.004533 0.004663 0.331420 19239
+21    shared zone (z), woreda NOT controlled  0.009835 0.002915 0.000789 19239
+22                           shared unit (u)  0.034515 0.005660 0.000000 19239
+23                       shared language (s)  0.018392 0.003798 0.000002 19239
+24                formed after arrival = xi1 -0.360869 0.036744 0.000000  3030
+25                formed after arrival = xi1 -0.347092 0.036350 0.000000  3030
+26                   kebele own-woreda share  0.263131 0.186143 0.157967  2920
+27                formed after arrival = xi1 -0.369538 0.046209 0.000000  2920
+28            post x kebele own-woreda share  0.315504 0.406868 0.438363  2920
+29     receiver minority, namer not (region) -0.005092 0.003596 0.157237 19522
+30   receiver x namer both minority (region)  0.031344 0.009571 0.001117 19522
+31   receiver minority, namer not (language) -0.005296 0.003765 0.160050 19522
+32 receiver x namer both minority (language)  0.047259 0.013415 0.000459 19522
+33              minority difference (region) -0.000495 0.002893 0.864078  9368
+34              minority difference (region)  0.003215 0.002656 0.226246  9368
+35            minority difference (language)  0.000006 0.003146 0.998554  9368
+        mde
+1  0.027984
+2  0.019684
+3  0.013285
+4  0.020294
+5  0.017573
+6  0.011700
+7  0.029911
+8  0.020719
+9  0.013183
+10 0.023095
+11 0.008324
+12 0.024901
+13 0.024109
+14 0.011620
+15 0.005596
+16 0.011365
+17 0.014299
+18 0.015832
+19 0.010653
+20 0.013057
+21 0.008162
+22 0.015847
+23 0.010635
+24 0.102882
+25 0.101780
+26 0.521201
+27 0.129385
+28 1.139232
+29 0.010068
+30 0.026800
+31 0.010542
+32 0.037561
+33 0.008101
+34 0.007438
+35 0.008809

@@ -1,0 +1,36 @@
+"channel","spec","term","b","se","p","n","mde"
+"recall (7)","recall, batch FE","shared origin (h)",0.061541,0.009994,0,19522,0.027984
+"recall (7)","recall, batch FE","shared unit (u)",0.050232,0.00703,0,19522,0.019684
+"recall (7)","recall, batch FE","shared language (s)",0.027658,0.004745,0,19522,0.013285
+"recall (7)","recall, batch FE, strangers","shared origin (h)",0.019844,0.007248,0.006364,19239,0.020294
+"recall (7)","recall, batch FE, strangers","shared unit (u)",0.040642,0.006276,0,19239,0.017573
+"recall (7)","recall, batch FE, strangers","shared language (s)",0.017934,0.004179,2.1e-05,19239,0.0117
+"recall (7)","recall, no FE","shared origin (h)",0.064688,0.010683,0,19522,0.029911
+"recall (7)","recall, no FE","shared unit (u)",0.035812,0.0074,2e-06,19522,0.020719
+"recall (7)","recall, no FE","shared language (s)",0.027183,0.004708,0,19522,0.013183
+"importation (8)","importation, batch FE","shared origin (h)",0.037173,0.008248,8e-06,19522,0.023095
+"importation (8)","importation, batch FE","shared zone (z)",0.01318,0.002973,1.1e-05,19522,0.008324
+"importation (8)","importation, no FE","shared origin (h)",0.041082,0.008893,5e-06,19522,0.024901
+"importation (8)","importation, no FE","shared origin (h), zone not controlled",0.051629,0.008611,0,19522,0.024109
+"opportunity (9)","opportunity, batch FE","shared unit (u)",0.024659,0.00415,0,19239,0.01162
+"opportunity (9)","opportunity, batch FE","shared language (s)",0.011249,0.001999,0,19239,0.005596
+"opportunity (9)","opportunity, batch FE, full sample","shared unit (u)",0.023898,0.004059,0,19522,0.011365
+"taste, co-hire (10)","taste co-hire, ego+alter FE","shared origin (h) = tau",0.007891,0.005107,0.122804,19239,0.014299
+"taste, co-hire (10)","taste co-hire, ego+alter FE","shared unit (u)",0.034465,0.005654,0,19239,0.015832
+"taste, co-hire (10)","taste co-hire, ego+alter FE","shared language (s)",0.019579,0.003805,0,19239,0.010653
+"taste, co-hire (10)","taste co-hire, batch FE","shared origin (h) = tau",0.004533,0.004663,0.33142,19239,0.013057
+"taste, co-hire (10)","taste co-hire, ego+alter FE, zone","shared zone (z), woreda NOT controlled",0.009835,0.002915,0.000789,19239,0.008162
+"taste, co-hire (10)","taste co-hire, ego+alter FE, zone","shared unit (u)",0.034515,0.00566,0,19239,0.015847
+"taste, co-hire (10)","taste co-hire, ego+alter FE, zone","shared language (s)",0.018392,0.003798,2e-06,19239,0.010635
+"taste, general network (11)","taste GN, no FE","formed after arrival = xi1",-0.360869,0.036744,0,3030,0.102882
+"taste, general network (11)","taste GN, respondent FE","formed after arrival = xi1",-0.347092,0.03635,0,3030,0.10178
+"taste, general network (11)","taste GN, no FE + kebele level","kebele own-woreda share",0.263131,0.186143,0.157967,2920,0.521201
+"taste, general network (11)","taste GN, FE + kebele interaction","formed after arrival = xi1",-0.369538,0.046209,0,2920,0.129385
+"taste, general network (11)","taste GN, FE + kebele interaction","post x kebele own-woreda share",0.315504,0.406868,0.438363,2920,1.139232
+"exclusion (12)","exclusion (a), namer split","receiver minority, namer not (region)",-0.005092,0.003596,0.157237,19522,0.010068
+"exclusion (12)","exclusion (a), namer split","receiver x namer both minority (region)",0.031344,0.009571,0.001117,19522,0.0268
+"exclusion (12)","exclusion (a), namer split","receiver minority, namer not (language)",-0.005296,0.003765,0.16005,19522,0.010542
+"exclusion (12)","exclusion (a), namer split","receiver x namer both minority (language)",0.047259,0.013415,0.000459,19522,0.037561
+"exclusion (12)","exclusion (b), differenced, any tie","minority difference (region)",-0.000495,0.002893,0.864078,9368,0.008101
+"exclusion (12)","exclusion (b), differenced, post-HIP tie","minority difference (region)",0.003215,0.002656,0.226246,9368,0.007438
+"exclusion (12)","exclusion (b), differenced, any tie","minority difference (language)",6e-06,0.003146,0.998554,9368,0.008809
