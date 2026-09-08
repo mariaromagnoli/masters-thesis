@@ -1,0 +1,53 @@
+\noindent This appendix explains and reports the tests mentioned in Section~\ref{sec:strategy}.\\
+
+\noindent Recall that workers are hired in groups and undergo training together. Firms may have slightly different training protocols, but trainings usually last about two weeks and comprise both soft-skills and machine training. Following the training, workers are assigned to a production unit according to how well they have performed. The training group is assigned by recruitment and is not chosen by the workers. Training group sizes vary widely (Appendix Figure~\ref{fig:cohires}). I refer to a training group as a "batch", and I take a batch to be the set of workers whose preloaded hiring rows list an identical set of co-hires. There are \pnBatchesWord{} batches that contain at least one surveyed worker, of which \pnBatchesLine{} are closed hiring lines in the sense that every member names the same set of colleagues, the rest appear to be slices of some sort of rolling recruitment window. As mentioned earlier, I do not have detailed information on each member of the batch - on origin, for example, I have information on those who were interviewed and on the colleagues they mentioned as a tie. Coverage (\textit{i.e.} the portion of a batch that we have surveyed) varies, from \pnCoverageMaxPct{}\% to less than \pnCoverageMinPct{}\% (Appendix Table~\ref{tab:coverage}). \\
+
+\noindent Even if workers do not choose their batch-mates, but probably get hired with the people who immigrated with them. The origin composition of a batch might serve as exogenous variation, but it must be tested. I try to test for it in different ways. \\
+
+\parhead{Test 1 - urbanity prediction}
+
+\noindent I test whether the "urbanity" of co-hires (\textit{i.e.}, how urban are the co-hires on average) predicts the profile of the worker herself. \\
+
+\noindent For worker $i$ with characteristic $y_i$,
+\begin{equation}
+\label{eq:setting-balance}
+y_i \;=\; a \;+\; \beta \, \bar{x}_{-i} \;+\; \varepsilon_i ,
+\end{equation}
+where $\bar{x}_{-i}$ is the mean share of life spent in an urban area among the members of $i$'s own co-hire set, excluding herself\footnote{I cannot use the share of urban individuals as it is extremely low and the exercise would lose its meaning. Additionally, I must leave out $i$, since counting the worker in her own treatment would lead to endogeneity. Excluding her is not neutral either, because she is drawn from the pool of co-hires}. Across workers $\bar{x}_{-i}$ has mean \pnTreatMean{} and standard deviation \pnTreatSd{}. The IQR stands between \pnTreatPTwentyFive{} and \pnTreatPSeventyFive{}. \\
+
+
+\noindent If assignment was as good as random, then we would have $\beta=0$ for every characteristic. This implies the colleagues one is dealt should carry no information about oneself. I run \pnBalanceChars{} such regressions, one per row of Table~\ref{tab:balance}, with standard errors clustered on the batch, and a second specification adding a firm fixed effect so that where a firm recruits cannot pass as batch composition. Note that Table~\ref{tab:balance} reports the effect of a full unit of $\bar{x}_{-i}$, which no worker in this sample experiences. Moving from the first quartile of co-hire urbanity to the third is a change of \pnTreatPSeventyFive{}$-$\pnTreatPTwentyFive{}. \\
+
+\noindent According to this test, no characteristic is predicted by batch composition.
+
+\input{../tables/table_balance}
+\FloatBarrier
+
+\parhead{Test 2 - batch prediction, not considering firms' catchments}
+
+\noindent This tests whether the batch a worker was hired into tells me anything about her. I perform an $F$-test. The spread of any characteristic across the sample comes from two places. Workers in the same batch differ from one another, and batch averages differ from one another. If recruitment dealt workers out at random, batch averages should be around the overall average. The $F$ statistic is the ratio of the two. Near one, the batches look like random draws from a common pool. \\
+
+\noindent The regression looks as follow. Writing $b(i)$ for the batch worker $i$ belongs to and $B$ for the number of batches,
+\begin{equation}
+\label{eq:setting-omnibus}
+y_i \;=\; \sum_{b=1}^{B} \bar{y}_b \, \mathds{1}\{b(i)=b\} \;+\; \varepsilon_i ,
+\qquad
+H_0 : \; \bar{y}_1 = \bar{y}_2 = \cdots = \bar{y}_B .
+\end{equation}
+The coefficient on each dummy is that batch's own mean of the characteristic, so the null is that the batch means are all equal. \\
+
+\input{../tables/table_omnibus}
+
+\noindent Batch membership predicts \pnOmniSigWord{} of the \pnOmniChars{} characteristics in Table~\ref{tab:omnibus}, and \pnOmniSigPermWord{} under the randomisation-inference $p$ beside it. This is a different verdict than the previous test, but it is not surprising. Given this result, any design that compares workers across batches will risk to be biased. Since batch membership carry so much information, a batch-level treatment is confounded with whatever else those characteristics track. It says nothing against comparing workers inside the same batch. \\
+\FloatBarrier
+
+\parhead{Test 3 - batch prediction, considering firms' catchments}
+
+\noindent I ask whether a worker's co-hires are drawn from her own woreda more often than the firm's composition would deliver. For each worker I compare the share of her co-hires born in her own woreda against that same woreda's frequency among her firm's workers, excluding her. \\
+
+\noindent Under random assignment the two should coincide in expectation. The test is whether their difference has mean zero. It is estimated by regressing the difference on a constant with standard errors clustered on the batch. The excess is about \pnWoredaExcessPct{}\% of the benchmark, and significant at the 5\% level ($p=\pnWoredaExcessP{}$, Table~\ref{tab:woreda}). \\
+
+\noindent Origin composition is not dealt out as if at random even with the firm held fixed, so it cannot stand as exogenous variation in exposure to same-origin colleagues. It appears a worker is placed with co-hires from her own woreda, probably because she arrived with them. Any estimate credits to exposure what is actually due to a joined arrival. \\
+
+\input{../tables/table_woreda}
+

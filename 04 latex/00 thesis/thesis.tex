@@ -1,0 +1,326 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{fancybox}
+\usepackage{newtxtext,newtxmath}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{footnote}
+\usepackage{threeparttable}
+\usepackage{subfig}
+\usepackage{natbib}
+\usepackage{tabularray}
+\usepackage{booktabs}
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{0.85\textwidth}
+\usepackage{placeins}
+
+\newcommand{\pn}[1]{#1}
+
+% Drafting marker, separate from \pn so the two can be switched off
+% independently. A passage inside \begin{stale}...\end{stale} rests on a
+% superseded definition and has not been rebuilt on current data. Declarative
+% rather than an argument-taking macro so it spans paragraphs. Replace the body
+% with {} to clear the marking everywhere. Currently unused.
+\newenvironment{stale}{\color{red}}{}
+
+% Generated macro files, one per emitting script. They live in pn/ alongside
+% tables/ and figures/, so every generated artefact in this directory sits in a
+% folder of its kind and nothing generated is loose at the top level.
+% Do not edit any of these by hand; regenerate with "99 run all.R".
+\input{../pn/pn_build}
+\input{../pn/pn_setting}
+\input{../pn/pn_data}
+\input{../pn/pn_balance}
+\input{../pn/pn_sample}
+\input{../pn/pn_livelihoods}
+\input{../pn/pn_recall}
+\input{../pn/pn_ties}
+\input{../pn/pn_mux}
+\input{../pn/pn_layer}
+\input{../pn/pn_channels}
+\input{../pn/pn_audit}
+
+% House table style (M, 2026-08-20): no top rule, italic lower-case column
+% headers, and a double rule beneath them.
+%
+% \hline\hline, not \midrule\midrule (M). Two bare \midrule commands abut with
+% only a hairline between them and read as one thick rule at page size;
+% \hline\hline separates them by \doublerulesep, which is the classic double
+% rule. Defined here rather than written out in each generated table so the
+% house rule has one definition -- the emitting scripts write \dmidrule and do
+% not care what it expands to.
+% \hline carries none of booktabs' rule padding, so the header and the first
+% body row otherwise sit tight against it while every other rule in the table
+% breathes. \addlinespace restores that spacing without changing the rule.
+\newcommand{\dmidrule}{\addlinespace[.4ex]\hline\hline\addlinespace[.4ex]}
+
+\newcommand{\fignote}[1]{%
+  \begin{minipage}{0.92\textwidth}\vspace{4pt}\footnotesize
+  \emph{Notes:} #1
+  \end{minipage}}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{dsfont}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\usepackage{enumerate}
+
+\newcommand{\parhead}[1]{%
+  \phantomsection
+  \addcontentsline{toc}{subsection}{#1}%
+  \noindent\textit{#1}\\}
+
+\definecolor{MyBrown}{rgb}{0.3,0,0}
+\definecolor{MyBlue}{rgb}{0,0.2,0.6}
+\definecolor{MyRed}{rgb}{0.4,0,0.1}
+\definecolor{MyGreen}{rgb}{0,0.4,0}
+\definecolor{MyPurple}{rgb}{0.5,0,0.5}
+\usepackage[bookmarks=true,bookmarksnumbered=true,colorlinks=true,linkcolor=MyBlue,citecolor=MyRed,filecolor=MyBlue,urlcolor=MyGreen,pagebackref]{hyperref}
+
+\renewcommand*\backref[1]{\ifx#1\relax \else [#1] \fi}
+
+\setlength{\topmargin}{-15pt}
+\setlength{\textheight}{638pt}
+\setlength{\oddsidemargin}{25pt}
+\setlength{\textwidth}{420pt}
+
+\makeatletter
+
+\newlength{\mylength}
+
+\newenvironment{Frame}%
+{\setlength{\fboxsep}{15pt}
+\setlength{\mylength}{\linewidth}%
+\addtolength{\mylength}{-2\fboxsep}%
+\addtolength{\mylength}{-2\fboxrule}%
+\Sbox
+\minipage{\mylength}%
+\setlength{\abovedisplayskip}{0pt}%
+\setlength{\belowdisplayskip}{0pt}%
+}%
+{\endminipage\endSbox
+\[\fbox{\TheSbox}\]}
+
+\newcommand{\bysameline}{\hskip.3em \leavevmode\rule[.5ex]{3em}{.3pt}\hskip0.5em}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\makeatother
+
+\title{\textbf{Drivers of Homophily in Newcomers' Networks}}
+
+\author{Maria Romagnoli\thanks{Under supervision of Prof. Grosset-Touba. }}
+\date{\textit{September 8th, 2026}\\[1ex]{\hypersetup{urlcolor=MyPurple}\href{https://github.com/mariaromagnoli/masters-thesis}{[GitHub]}}}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\tableofcontents
+
+\newpage
+\section*{Acknowledgements}
+
+\epigraph{%
+I sensed Budberg was right and I rebelled.   \\
+So I won’t have power, won’t save the world?   \\
+Fame will pass me by, no tiara, no crown?   \\
+Did I then train myself, myself the Unique,   \\
+To compose stanzas for gulls and sea haze, \\  
+To listen to the foghorns blaring down below? \\[1ex]
+Until it passed. What passed? Life.\\
+Now I am not ashamed of my defeat.\\
+One murky island with its barking seals\\
+Or a parched desert is enough\\
+To make us say: yes, \textit{oui, si}.\\
+\textit{``Even asleep we partake in the becoming of the world.''}\\
+Endurance comes only from enduring.\\
+With a flick of the wrist I fashioned an invisible rope,\\
+And climbed it and it held me.%
+}{Czes\l{}aw Mi\l{}osz, \textit{A Magic Mountain} (1975)}
+
+\noindent These acknowledgements concern both my thesis and my master's more generally.\\
+
+\noindent For the thesis, I wish to thank Prof. Grosset-Touba for his trust and for his time. It was a pleasure work with him, Prof. Wu and Anubhav, and I am grateful for the precious feedback received.\\
+
+\noindent For what concerns my studies - it was quite the journey. I had my first economics class on a rather gloomy September afternoon, back in 2020. I had just
+arrived in Milan. I did not know what to expect, but I was quite curious about what could be found ahead. Six years later, it is September again. I am reflecting on the path
+travelled, glancing from time to time through an office window. It is sunny outside. \\
+
+\noindent These years were extremely challenging from many perspectives. I got many things
+right, probably more things wrong  – it appears
+that is life. The academic aspect was perhaps the easiest one. Even if I loved to
+complain about the curriculum, I had a great education and I am grateful for it.
+However, I am not sure that what I will take away from these past years is my
+training. I may have learnt more about people and their dynamics, rather than
+economics. In workplaces and classrooms, I was exposed to a multitude of
+opinions, beliefs, and ways of life. Many were bad and caused unnecessary pain.
+Today, I want to focus on the good. \\
+
+\noindent I shared my master’s journey with great people. I wish to thank Ola, who was a
+wonderful friend and flatmate. It was such a pleasure to share this
+experience with you. I admire the care you put in all the little details that make life
+better, and I must say you are quite the inspiration. A huge thanks goes to Caro for her company and her
+zest for life, whether in Milan or Palaiseau (I will never thank you enough for getting
+us out of Bocconi). I cannot forget Emma, a fun and generous soul who made me feel very at
+ease, and showed up when I needed it. I am also very grateful to have
+met Anh Linh, Héloïse, Nadia and Thomas. You are wonderful people, each one of
+you in their own way. Thank you for the laugh and the beautiful conversations.
+Thomas, I am very glad we eventually talked enough to realise that we share, in fact,
+a lot of things. \\
+
+\noindent I have a great support system.  I must thank my family for their support throughout the years, especially in times when it was not easy. Thank you for the love you send my way. To sense that I have three generations of people who are proud of me, no matter what I may actually think of myself, gives a special kind of strength.\\
+
+\noindent When life gives me lemons, I turn to Gabriele, which
+carefully analyses them and proposes a recipe. It was a privilege to
+exchange with you, be it on important choices or on actual baking. Our discussions are of great help on the path to
+a happy and balanced life. It reassures me that we often reach the same conclusions
+from parallel experiences. \\
+
+
+\noindent Lastly, I am the most grateful to Mitia, without whom I would be a much worse
+version of myself. You showed me how to distinguish what is important from what is
+not, you cheered me up more times than I can count, and you taught me how to build
+some peace of mind when life becomes blurry. Thank you for your structure, and for
+helping me face all the challenges that came my way. Without your warmth, I would
+not have been able to keep myself together this past year and a half. You keep me
+grounded, and I am blessed to have you.\\
+
+\noindent 08/09/2026, Frankfurt-am-Main
+
+\newpage
+\section{Introduction}
+\input{01 intro}
+
+\newpage
+\section{Conceptual Framework and Related Literature}
+\label{sec:cf}
+\input{02 conceptual framework}
+
+\newpage
+\section{Empirical Setting}
+\label{sec:setting}
+\input{03 empirical setting}
+
+\newpage
+\section{Toy model}
+\label{sec:model}
+\input{04 toy model}
+
+\newpage
+\section{Empirical Strategy}
+\label{sec:strategy}
+
+\input{05 empirical strategy}
+
+\clearpage
+\section{Results}
+\label{sec:results}
+
+\input{06 results}
+
+\clearpage
+\section{Conclusions}
+\label{sec:conclusion}
+\input{07 conclusions}
+
+
+\newpage
+\bibliographystyle{apalike}
+\bibliography{../sources}
+\newpage
+\appendix
+% appendix floats numbered A1, A2, ... so cross-references from the body are
+% unambiguous about which are relegated here
+\renewcommand{\thefigure}{A\arabic{figure}}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{table}{0}
+
+\clearpage
+\section{Additional figures}
+\label{sec:appendix}
+
+\begin{table}[h!]
+\centering
+\caption{Firms in the analysis sample}
+\label{tab:firms}
+\input{../tables/table_firms}
+\fignote{\textit{sampling rate} is \textit{surveyed} over \textit{rostered}. \textit{Co-hire sets} counts the distinct hiring batches with at least one surveyed member.}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Sample characteristics}
+\label{tab:demographics}
+\small\input{../tables/table_demographics}
+\fignote{\textit{majority-rural}: more than half of life spent rural.}
+\end{table}
+\clearpage
+
+\begin{table}[h!]
+\centering
+\caption{Livelihoods}
+\label{tab:livelihoods}
+\small\input{../tables/table_livelihoods}
+\fignote{\textit{Own earnings, all activities} is the fourteen-day earnings module scaled to a month, for the \pnEarnWindowN{} workers whose window falls entirely after their hire date.}
+\end{table}
+
+\input{../tables/table_batch_coverage}
+
+\begin{table}[h!]
+\centering
+\caption{Specification 6 - what makes a general-network tie deep}
+\label{tab:depth_gn}
+\small\input{../tables/table_depth_gn}
+\fignote{Standard errors clustered on the respondent. *** 1\%, ** 5\%, * 10\%.}
+\end{table}
+\clearpage
+
+\input{../tables/table_logit}
+\clearpage
+
+\begin{figure}[h!]
+\centering
+\caption{Birth woreda of sampled workers}
+\label{fig:catchment}
+\includegraphics[width=0.7\textwidth]{../figures/fig_setting_catchment}
+\fignote{Map extent is limited to Southern Ethiopia.}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\caption{Size of the co-hire group}
+\label{fig:cohires}
+\includegraphics[width=0.7\textwidth]{../figures/fig_setting_cohires}
+\fignote{Top panel: all rostered workers. Bottom panel: the surveyed analysis sample.}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\caption{Co-residents by type and rural background}
+\label{fig:housing}
+\includegraphics[width=0.9\textwidth]{../figures/fig_setting_housing}
+\fignote{Bars show the share of workers living with at least one person of each type.}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\caption{Generator coverage over the co-hire roster}
+\label{fig:generators}
+\includegraphics[width=0.9\textwidth]{../figures/fig_setting_generators}
+\fignote{Share of workers naming at least one co-hire under each generator.}
+\end{figure}
+
+\clearpage
+\section{Tests}
+\label{sec:appendix-quasirandom}
+\input{11 appendix quasirandomness}
+
+
+\end{document}

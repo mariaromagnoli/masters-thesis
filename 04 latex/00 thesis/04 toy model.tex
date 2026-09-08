@@ -1,0 +1,92 @@
+\noindent Let there be a multitude of workers. Each worker $i$ has origin $o_i$, identified at the woreda level (an Ethiopian administrative unit, corresponding to a village and its surroundings) and carries a language endowment. She has been hired at HIP in a \textit{hiring batch} $b_i$ and, after training, assigned to a \textit{production unit} $p_i$. 
+\[
+h_{ij} = \mathds{1}\{o_i = o_j\}, \qquad
+s_{ij} = \mathds{1}\{i,j \text{ share a language}\}, \qquad
+u_{ij} = \mathds{1}\{p_i = p_j\}
+\]
+for a shared origin, a shared language, and a shared production unit. These characteristics will help me understanding if people are drawn to others who share their same references, if they seek someone with which they can communicate well, or if they befriend whoever they are exposed to repeatedly. \\
+
+\noindent There are two periods. Period 0 represents life before the Park, while period 1 is the Park at the moment of the survey. I write $g^0_{ij}$ for a tie that is formed at period 0, \textit{i.e.} that already exists before either worker is recruited, and $g^1_{ij}$ for one formed inside the Park. Ties persist through time, thus a tie made in Period 0 will be carried over in Period 1. \\
+
+\parhead{Ties formed in Period 0}
+
+\noindent Let us focus on $g^0_{ij}$. Same-origin pairs are likelier to arrive already acquainted, and conversely pairs who are already acquainted are likelier to arrive together. To model this, I set that in Period 0,  the pair is linked with probability
+\begin{equation}
+\label{eq:model-inherit}
+\Pr(g^0_{ij}=1) \;=\; \pi_0 + \pi_1 h_{ij}, \qquad \pi_1 > 0,
+\end{equation}
+where $\pi_0$ is the baseline chance that two workers know each other, and $\pi_1$ is the chance that two workers are acquainted when we consider two people of the same woreda. The $\pi_1$ is somehow a "chance premium", and is positive.\\
+
+\noindent To account for the fact that workers are likely not sorted independently, I introduce the parameter $\rho \geq 1$. It is the factor by which knowing each other in Period 0 raises the odds that two concerned workers share a batch. Note that $\rho = 1$ is when batches are blind to the existing network, $\rho > 1$ is when batches travelling along it. The \textit{importation channel} is thus captured by the pair $(\pi_1, \rho)$, with the first capturing the fact that inherited ties will be homophilous, and the second deciding how many of those ties translate into co-hires. \\
+
+\parhead{Ties formed in Period 1}
+
+\noindent Let us now turn to pairs with $g^0_{ij}=0$, who arrive at HIP as strangers. For a tie to form , two things must happen in order:
+\begin{enumerate}
+    \item the two workers must meet,
+    \item $i$ must name $j$, or the contrary, or both. \footnote{The second step can one-sided. As we will see, there are unreciprocated ties, and the exclusion channel below is read entirely from the difference between $i \to j$ and $j \to i$.}.
+\end{enumerate}
+\noindent I take these in turn. The survey used sees only the two steps together, since it asks a worker whom she names and never whom she met. A name
+not produced may have failed at either step. \\
+
+\noindent The first step involves meeting the other person. Two co-hires interact with probability
+\begin{equation}
+\label{eq:model-meet}
+m_{ij} \;=\; \big[\, \mu_b \;+\; \mu_p\, u_{ij} \,\big]\, \kappa^{\,1-s_{ij}},
+\qquad \mu_b > 0,\;\; \mu_p > 0,\;\; \kappa \in [0,1],
+\end{equation}
+This is the \textit{opportunity channel}, and it has three parts. First,
+$\mu_b$ is the chance that any two batch-mates meet at all, whatever else
+they have in common. Second, $\mu_p u_{ij}$ adds to that chance when the
+two share a production unit. Third, the factor $\kappa^{\,1-s_{ij}}$ discounts pairs with no language in common. It equals one when they share a language and $\kappa$ when they do not. The idea is that undergoing training together adds occasions to meet, while having no language in common scales down every occasion that the pair has. Note that origin is not included in the opportunity channel\footnote{This implies that once
+production unit and language are accounted for, meeting inside the Park is
+blind to origin.}, to distinguish it from the taste channel.  \\
+
+\noindent The second step involves having an actual tie with the other person.  If two workers have met, $i$ will name $j$ when
+\begin{equation}
+\label{eq:model-name}
+n_{ij} \;=\; \mathds{1}\big\{\, \alpha_i + \gamma_{ij} + \tau\, h_{ij} + \varepsilon_{ij} > 0 \,\big\},
+\qquad
+\gamma_{ij} \;=\; \bar{\gamma}_j - \delta\, \mathds{1}\{j \in \text{minority}\}\,\mathds{1}\{i \notin \text{minority}\},
+\end{equation}
+
+\noindent where $\varepsilon_{ij}$ is noise. Following \citet{graham2017econometric}, $\alpha_i$ is how freely $i$ names anyone at all and $\bar{\gamma}_j$ how readily $j$ is named by anyone. The \textit{taste channel} is $\tau$, the premium a worker attaches to a partner from her own woreda. The \textit{exclusion channel} is $\delta \geq 0$, \textit{i.e.} the lower chance that a majority worker nominates a minority one. Note that, in this context, I define minority as an individual who was either born outside of Sidama region\footnote{This represents \pnChanMinorityRegionN{} of the \pnAnalysisN{} workers.} or who reports speaking little to no Sidamigna\footnote{This is \pnChanMinorityLangN{} workers.}.  The two agree on \pnChanMinorityBothN{} workers. \\
+
+\noindent It is not immediate how to separate taste from exclusion. What I propose is to argue that taste is a characteristic of the pair, while exclusion is directional. Since $h_{ij} = h_{ji}$, the taste term $\tau h_{ij}$ enters the nomination $i \to j$ and the nomination $j \to i$ identically. On the other hand, exclusion does not. If $j$ is a minority worker and $i$ is not, then $i \to j$ carries the penalty $-\delta$ while $j \to i$ carries nothing.\\
+
+\noindent Putting the two steps together, a worker who arrived a stranger
+names $j$ with probability
+\[
+\Pr(g^1_{ij}=1) \;=\; m_{ij} \cdot
+\Pr\big(\alpha_i + \gamma_j + \tau\, h_{ij} + \varepsilon_{ij} > 0\big).
+\]
+Thus who workers recall or not, who they nominate or not, is a result of those forces.  \\
+
+\noindent Table~\ref{tab:mapping} collects the four channels, the
+parameters that carry each of them, what each would leave behind in the
+network if it were the one at work, and the specification of
+Section~\ref{sec:strategy} that goes looking for it. \\
+
+\begin{table}[h!]
+\centering
+\caption{The four channels, and where each is tested}
+\label{tab:mapping}
+\footnotesize
+\begin{tabular}{lllp{0.34\textwidth}l}
+\textit{channel} & \textit{parameter} & \textit{where it acts} & \textit{signature in the network} & \textit{test} \\
+\dmidrule
+importation & $\pi_1, \rho$ & before HIP & the same-origin premium loads on ties that predate the batch, not on those formed in it & Spec.~2 \\
+\medskip
+opportunity & $\mu_p, \kappa$ & meeting & ties follow the production unit or the shared language & Spec.~3 \\
+\medskip
+taste & $\tau$ & naming & a same-origin premium on ties formed at HIP, and a tilt in what those ties are used for & Spec.~4, 8 \\
+\medskip
+exclusion & $\delta$ & naming & minority workers named less \textit{by the majority}, and their nominations returned less often & Spec.~5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\parhead{Comment}
+
+\noindent In the next section, I try to make the parameters of the model empirically testable. My toy model is not performant in predicting the outcomes we will discuss in Section \ref{sec:results}. Attempting to model a priori the homophily creation process, however, provided me with insights that were then indeed validated. In particular, splitting ties by period, or looking at ties in a directional manner, made for informative regressions.

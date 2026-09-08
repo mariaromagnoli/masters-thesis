@@ -1,0 +1,127 @@
+\parhead{On the limitations of a more robust design}
+
+\noindent The empirical specifications I have implemented in this thesis are unfortunately not causal. I chose not to attempt a causal design, as I believed the needed assumptions did not hold. \\
+
+\noindent Ideally, I could have exploited the fact that workers do not choose their batch - they are hired with whoever else was hired that week. It could be argued that, given the setting, a worker's exposure to particular kinds of colleague is exogenous and can be regressed directly on her outcomes. For example, the origin composition of her batch could be a predictor of how homophilous her network becomes. Similarly, the share of a worker's co-hires who come from an urban background could be a predictor of who she ties with (and what her outcomes) are. \\
+
+\noindent After performing a series of tests, reported in Appendix~\ref{sec:appendix-quasirandom}, I have chosen not to go down this route. I find that belonging to a certain batch predicts several individual charateristics, probably because individuals migrate and get hired together. One of the tests finds that a worker's co-hires are drawn from her own woreda \pnWoredaExcessPct{}\% more often than her firm's composition implies, and this excess survives holding the firm fixed\footnote{Because one of the reasons could have been that firms hire from different catchments.}. My understanding is that to perform the above-mentioned design, I would have needed for batch composition to be exogenous variation, \textit{i.e.} for the composition of a batch to carry no information about the worker hired into it. \\
+
+\noindent Additionally, my data is cross-sectional, which rules out exploiting a time dimension or following people as they tie with colleagues assigned to their production unit. Given that they are allocated to units according to how they performed during the training, that specific assignement could be considered exogenous if performance is assumed independent from origin. \\
+
+\noindent In the models below, every specification is therefore estimated within batch, so that the comparison is between workers, or pairs of workers, who were handed the same set of colleagues. What differences remain across batches are absorbed. \\
+
+\parhead{Extensive margin}
+
+\noindent The first specifications I test are linear probability models (LPM). They assess what is correlated with the existence of a tie. These are flexible and straightforward to interpret. The models below recover the probability of a tie (or rather, the linear projection rather than the probability itself). As happens with linear projections, the estimates can leave the [0,1] interval. Note that in my exercise, at worst \pnChanLpmOutsidePct{}\% of pairs in a specification do, almost all of them below zero, and never by more than \pnChanLpmMaxDevPp{} points. \\
+
+\noindent A logit fits the same data with a curve rather than a line, and the curve is bounded, so none of its fitted values can fall outside the interval. Its coefficients are log-odds and not probabilities (which is less convenient), and it drops all observations in batches in which nobody forms a tie, which does not happen with the LPM\footnote{The logit drops the whole batch, because due to the fixed effects each batch essentially enters as its own dummy. In a batch where nobody tied, the dummy enters as 0 and the likelihood has no finite maximum. A logit then estimates the effect among the batches where ties happened rather than among all of them, but it thus obscures a part of the story - why did those people not tie ?}. \\
+
+\noindent In any case, I have estimated most equations with a logit to see if results would differ substantially, and they do not (Table~\ref{tab:logit}).  Across the extensive-margin equations, no coefficients change sign or significance. The logit discards \pnChanLogitDropBatches{} of the \pnChanLogitBatches{} batches. As a consequence, I decided to use the LPM specification throughout. \\
+
+\noindent \underline{\textit{Specification 1: Recall}} \\[0.4em]
+I first investigate what is associated with recall. This regression gives clues on which of the four channels is the most promising. \\ 
+
+\noindent Writing $\text{recalled}_{ij}=1$ when $i$ produced $j$'s name,
+\begin{equation}
+\label{eq:strategy-recall}
+\begin{split}
+\text{recalled}_{ij} \;=\; \theta_1\,\text{same woreda}_{ij} \;&+\; \theta_2\,\text{same unit}_{ij} \\
+&+\; \theta_3\,\text{shared language}_{ij} \;+\; \lambda_{b} \;+\; \varepsilon_{ij},
+\end{split}
+\end{equation}
+where $\theta_1$ to $\theta_3$ are what each feature adds to the chance of being recalled and $\lambda_b$ is a batch fixed effect. The batch FE holds fixed the roster the worker was handed, but absorbs the intercept. The variation used is thus within batch, \textit{i.e.} pairs drawn from the same roster that differ in whether the two members share a woreda, share a production unit\footnote{\noindent The production unit is unrecorded for one member of the pair or both in \pnPuUnknownPct{}\% of pairs. Rather than drop them, I set the indicator to
+zero for them and enter a second indicator for the unit being unrecorded beside it. That second indicator carries its own intercept, so the zeros I inserted sit in a group of their own and $\theta_2$ is read off the pairs whose units are observed. Dropping them instead would estimate this equation on a smaller sample than the ones that do not involve the production unit, and the coefficients on \textit{same woreda} and \textit{shared language} would no longer be comparable across specifications. }, or can speak to one another. \\
+
+\noindent This is valid, but potentially biased towards zero. I began to be concerned with the idea that people have a "budget" in recall. If the training is a place where we make rather shallow connections, then I will recall a limited number of people. If there is such budget, a feature that raises the chance one co-hire is named lowers it for the others. I abstract from this for now. \\
+
+\noindent \underline{\textit{Specification 2: Importation}} \\[0.4em]
+If a network is imported, the same-origin premium sits on ties that predate the batch.\\
+
+\noindent The test is a regression of \textit{inherited tie} on the same-origin indicator
+\begin{equation}
+\label{eq:strategy-import}
+\text{inherited tie}_{ij} \;=\; \pi_1\,\text{same woreda}_{ij} \;+\; \pi_2\,\text{same zone}_{ij} \;+\; \lambda_{b} \;+\; \varepsilon_{ij},
+\end{equation}
+where $\pi_2$ is what sharing the coarser geography adds to the chance that two workers arrived already acquainted and $\lambda_b$ is a batch fixed effect. Because the zone is held fixed alongside it, $\pi_1$ is the premium for a shared woreda specifically, in addition to what a shared zone already buys. The variation used is again within batch\footnote{And for $\pi_1$, it is narrower still. It is pairs who share a zone but differ in whether they also share a woreda.}.  \\
+\clearpage
+
+
+\noindent \underline{\textit{Specification 3: Opportunity}} \\[0.4em]
+To isolate opportunity, I must exploit something that shifts the meeting technology without being preferences. The candidates are the production unit the firm assigns after training, and whether two workers share a language\footnote{Neither is ideal. Units are assigned after training and on the basis of performance, so two workers placed together may be alike in ways I do not observe. Language could technically fall into taste for one's own group, but you may have people from a different group fluent in one or more languages that you speak.}. \\
+
+\noindent Restricting attention to the pairs who arrived as strangers, so that the outcome is whether they went on to be tied inside the Park,
+\begin{equation}
+\label{eq:strategy-opp}
+\text{new tie}_{ij} \;=\; \mu_p\,\text{same unit}_{ij} \;+\; \beta_s\,\text{shared language}_{ij} \;+\; \lambda_{b} \;+\; \varepsilon_{ij},
+\end{equation}
+ where $\mu_p$ is what the firm's placing the two together in a production unit adds to the chance of a tie and $\beta_s$ is what a language in common adds to it. The variation used is within batch and among the pairs who arrived as strangers. \\
+
+
+\noindent \underline{\textit{Specification 4: Taste}} \\[0.4em]
+On pairs who arrived as strangers, I can see whether there is a same-origin premium in the ties they went on to form. 
+\begin{equation}
+\label{eq:strategy-taste-cohire}
+\begin{split}
+\text{new tie}_{ij} \;=\; \tau\,\text{same woreda}_{ij} \;&+\; \mu_p\,\text{same unit}_{ij} \;+\; \beta_s\,\text{shared language}_{ij} \\
+&+\; \alpha_i \;+\; \gamma_j \;+\; \varepsilon_{ij}.
+\end{split}
+\end{equation}
+\noindent Unit assignement and language enter again as controls. There is no intercept, because the sender effect $\alpha_i$ (how freely the respondent names anyone) and the receiver effect $\gamma_j$ (how readily the alter is named by anyone) absorb it. What is left on \textit{same woreda} is a premium attached to the pair. The variation used is within respondent and within alter. The coefficient $\tau$ is read off the co-hires a single worker was presented with, who differ in whether they come from her woreda. I estimate the same equation a second time with \textit{same zone} in place of \textit{same woreda}. It is better powered, since many more pairs share a zone than share a woreda.  \\
+
+\noindent \underline{\textit{Specification 5: Exclusion}} \\[0.4em]
+Refusal is a property of the person refused, is directional, and might carry information. It is captured empirically by the receiver effect ${\gamma}_j$ of equation ()\ref{eq:strategy-taste-cohire}), and I try to assess here if it can be predicted by minority status. \\
+
+\noindent I estimate $\delta$ on the dyads, letting the namer's own status enter,
+\begin{equation}
+\label{eq:strategy-excl-split}
+\text{new tie}_{ij} \;=\; -\,\delta\,\text{minority}_j \;-\; \psi\,\text{minority}_j \times \text{minority}_i \;+\; x_{ij}'\beta \;+\; \lambda_b \;+\; \varepsilon_{ij},
+\end{equation}
+where $x_{ij}$ carries the same shared-woreda, same-unit and shared-language controls as Specification 3. Here $\delta$ is read only off pairs whose namer is \textit{not} a minority worker, which is the quantity the model defines, and $\psi$ says how that penalty changes when the namer is a minority worker too. Both enter negatively, so a positive $\delta$ is a penalty. \\
+
+\noindent This might have power problems, since $\delta$ is identified only off the \pnChanExclOutPairs{} pairs in which exactly one member is a minority worker. \\
+
+\noindent Standard errors in equations~\eqref{eq:strategy-recall} to~\eqref{eq:strategy-taste-cohire} are clustered on both members of the pair, since a worker appears in as many rows as she has co-hires and on both sides of them. Equation~\eqref{eq:strategy-excl-split} is estimated on the dyads directly and is clustered the same way. \\
+
+\parhead{Intensive margin}
+
+\noindent The specifications above ask whether a tie exists. The ones below condition on a tie existing and ask what determines the quality and the quantity of its layers. Specification 6 asks whether a tie to someone from home does more. Specification 7 asks whether the ties a worker brought with her are used for different things than the ones she made here. Specification 8 asks whether a shared origin redistributes a tie across functions without changing how many it carries.\\
+
+\noindent Note that in Specifications 6 and 7 an observation is a tie and the fixed effect is the worker, so that every comparison is between two ties of the same person. In Specification 8 an observation is a tie on one of the fifteen layers and the fixed effect is the pair. \\
+
+
+\noindent \underline{\textit{Specification 6: Depth}} \\[0.4em]
+Let me write $\text{layers}_{ij} = \sum_q \text{tie}_{ijq}$ for the number of the fifteen layers a tie carries, and $\text{knew before}_{ij}=1$ when the tie is inherited. I ask what determines how much a tie carries, counting the fifteen layers as interchangeable:
+\begin{equation}
+\label{eq:strategy-depth}
+\begin{split}
+\log \mathbb{E}\big[\text{layers}_{ij}\big] \;=\; \omega_1\,\text{knew before}_{ij} \;&+\; \omega_2\,\text{same woreda}_{ij} \;+\; \omega_3\,\text{shared language}_{ij} \\
+&+\; \omega_4\,\text{same unit}_{ij} \;+\; \alpha_i,
+\end{split}
+\end{equation}
+estimated by Poisson, so each $\omega$ reads as a proportional change in the number of layers rather than as a count. Thus, $\omega_1$ is what a tie's predating the Park does to its depth, $\omega_2$ what a shared woreda does, $\omega_3$ what a language in common does and $\omega_4$ what the firm's having placed the two together does. $\alpha_i$ is a respondent effect.\\
+
+\noindent Note that the count has no zeros by construction, because a tie is in the sample only if it carries at least one layer. Also, with $\alpha_i$, the variation used is between two ties of the same worker that differ in vintage, in origin, in language or in production unit - thus workers with a single recorded tie are collinear and drop out. Standard errors are clustered on both members of the pair on the co-hire roster, and on the respondent alone for the few analyses on the general network.\\
+
+\noindent The sample is ties, so whatever selects a pair into having a tie selects it into this regression. This generates bias, the direction of which is unclear. A selection model on tie existence could in theory address it (and I have attempted it), but I believe the exclusion restriction did not hold. I try to get a sense of selection by adding indicators and interactions for \textit{kin} and \textit{friend}, and with $\alpha_i$ replaced by a constant so as to observe the respondent effect. \\
+
+\noindent \underline{\textit{Specification 7: Vintage}} \\[0.4em]
+I ask whether imported ties differ in tie content. For each layer $q$ separately,
+\begin{equation}
+\label{eq:strategy-vintage}
+\text{tie}_{ijq} \;=\; \sigma_q \, \text{knew before}_{ij} \;+\; \alpha^{q}_{i} \;+\; \varepsilon_{ijq},
+\end{equation}
+a linear probability model with a respondent effect, estimated one layer at a time. Thus, $\sigma_q$ is how much likelier an old tie is than a new one to be used for that particular dimension. \\
+
+\noindent There are fifteen tie layers, translating in fifteen sets of respondent effects. The variation used for $\sigma_q$ is ties of the same worker that differ in vintage. Standard errors are clustered on the worker. \\
+
+\noindent \underline{\textit{Specification 8: Multiplexing}} \\[0.4em]
+I ask whether shared origin tilts  the tie toward some functions and away from others. Stacking the tie-by-layer observations,
+\begin{equation}
+\label{eq:strategy-layer}
+\text{tie}_{ijq} \;=\; \sum_{q} \beta_q \big( \text{same woreda}_{ij} \times \mathds{1}\{q\} \big) \;+\; \psi_{q} \;+\; \zeta_{ij} \;+\; \varepsilon_{ijq},
+\end{equation}
+where $\beta_q$ is how much a shared woreda shifts the tie toward layer $q$, with one coefficient per layer. Layer fixed effect $\psi_q$ absorbs how common that layer is across all ties, and $\zeta_{ij}$ is a fixed effect for the pair. \\
+
+\noindent The design absorbs everything that is a property of two people rather than of a function. Note that a consequence is that the fifteen coefficients are pinned only relative to one another and are reported as deviations from their own mean. This design cannot say whether a shared origin makes a tie carry more layers, only how it spreads them across the fifteen. A flat profile says that taste does not shape what a tie is used for, independently of what it does to whether the tie exists at all. \\
+
+\noindent Kinship can load onto $\beta_q$. I estimate equation~\eqref{eq:strategy-layer} a second time with kinship given fifteen interactions of its own, $\beta^{\text{kin}}_q$, so that the two profiles are fitted side by side. If the two trace the same shape across the fifteen layers, then origin is simply kinship.\\
